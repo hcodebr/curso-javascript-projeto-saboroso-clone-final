@@ -9,7 +9,7 @@ module.exports = (io) => {
 
     router.use((req, res, next) => {
 
-        if (['/login'].indexOf(req.url) === -1 && !req.session.user) {
+        if (['/login'].indexOf(req.url) === -1 && (req.session && !req.session.user)) {
 
             res.redirect('/admin/login');
 

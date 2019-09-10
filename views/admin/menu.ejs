@@ -1,0 +1,171 @@
+<%- include('inc/header') -%>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Menu
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+            <li class="active">Menu</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Lista</h3>
+                <a href="#" class="btn btn-xs pull-right btn-success" data-toggle="modal" data-target="#modal-create"><i
+                        class="fa fa-plus"></i> Novo</a>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <table class="table table-striped" id="grid">
+                    <thead>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Foto</th>
+                            <th>Título</th>
+                            <th>Descrição</th>
+                            <th>Preço</th>
+                            <th style="min-width: 134px;">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% data.forEach(function(row){ %>
+                        <tr data-row="<%= JSON.stringify(row) %>">
+                            <td><%= row.id %></td>
+                            <td><img src="../<%= row.photo %>" alt="" style="height: 18px;"></td>
+                            <td><%= row.title %></td>
+                            <td><%= row.description %></td>
+                            <td><%= row.price %></td>
+                            <td><button type="button" class="btn btn-xs btn-info btn-update"><i
+                                        class="fa fa-pencil"></i> Editar</button>&nbsp;<button type="button" class="btn btn-xs btn-danger btn-delete"><i
+                                        class="fa fa-trash"></i> Excluir</button></td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<div class="modal fade" id="modal-create">
+    <div class="modal-dialog">
+        <div class="modal-content" style="border-top: 3px solid #00a65a;">
+            <form enctype="multipart/form-data" method="post" action="/admin/menu">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Novo Menu</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputTitleCreate">Título</label>
+                        <input type="text" class="form-control" id="inputTitleCreate" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDescriptionCreate">Descrição</label>
+                        <textarea class="form-control" id="inputDescriptionCreate" name="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPriceCreate">Preço</label>
+                        <input type="number" class="form-control" id="inputPriceCreate" name="price">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPhotoCreate">Foto</label>
+                        <img style="max-width: 128px; max-height: 128px; display: block;" src="dist/img/boxed-bg.jpg" id="inputPhotoViewCreate">
+                        <input type="file" class="form-control" id="inputPhotoCreate" name="photo">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal-update">
+    <div class="modal-dialog">
+        <div class="modal-content" style="border-top: 3px solid #00c0ef;">
+            <form enctype="multipart/form-data" method="post" action="/admin/menu">
+                <input type="hidden" name="id">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Editar Menu</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputTitleUpdate">Título</label>
+                        <input type="text" class="form-control" id="inputTitleUpdate" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDescriptionUpdate">Descrição</label>
+                        <textarea class="form-control" id="inputDescriptionUpdate" name="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPriceUpdate">Preço</label>
+                        <input type="number" class="form-control" id="inputPriceUpdate" name="price">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPhotoUpdate">Foto</label>
+                        <img style="max-width: 128px; max-height: 128px; display: block;" src="dist/img/boxed-bg.jpg" id="inputPhotoViewUpdate">
+                        <input type="file" class="form-control" id="inputPhotoUpdate" name="photo">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-info">Salvar</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<%- include('inc/footer') -%>
+
+<script src="/js/hcode-filereader.js"></script>
+<script src="/js/hcode-formsave.js"></script>
+<script src="/js/hcode-grid.js"></script>
+<script>
+
+    new HcodeGrid({
+        id: 'grid',
+        urlDelete: '/admin/menu/${data.id}',
+        textDeleteConfirm: 'Deseja realmente excluir ${data.title} do menu?',
+        onUpdateLoad: (formUpdate, name, data) => {
+
+            switch (name) {
+                case 'photo':
+                    formUpdate.querySelector(`img`).src = '../' + data[name];
+                    break;
+                default:
+                    let input = formUpdate.querySelector(`[name=${name}]`);
+                    if (input) input.value = data[name];
+
+            }
+
+        }
+    });
+
+new HcodeFileReader(document.querySelector('#inputPhotoCreate'), document.querySelector('#inputPhotoViewCreate'));
+new HcodeFileReader(document.querySelector('#inputPhotoUpdate'), document.querySelector('#inputPhotoViewUpdate'));
+</script>

@@ -1,0 +1,40 @@
+<div class="gtco-section">
+    <div class="gtco-container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                <h2 class="cursive-font primary-color">Pratos Populares</h2>
+                <p>Mussum Ipsum, cacilds vidis litro abertis. Diuretics paradis num copo é motivis de denguis. Quem num
+                    gosta di mé, boa
+                    gentis num é.</p>
+            </div>
+        </div>
+        <div class="row">
+
+            <% menus.forEach(function(menu){ %>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <a href="<%=menu.photo%>" class="fh5co-card-item image-popup">
+                    <figure>
+                        <div class="overlay">
+                            <i class="ti-plus"></i>
+                        </div>
+                        <img src="<%=menu.photo%>" alt="Image" class="img-responsive">
+                    </figure>
+                    <div class="fh5co-text">
+                        <h2>
+                            <%=menu.title%>
+                        </h2>
+                        <p>
+                            <%=menu.description%>
+                        </p>
+                        <p>
+                            <span class="price cursive-font">
+                                <%=menu.price%></span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <% }); %>
+
+        </div>
+    </div>
+</div>

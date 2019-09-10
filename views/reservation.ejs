@@ -1,0 +1,84 @@
+<%- include('page-header') -%>
+
+<div class="gtco-section" style="padding-bottom: 14em;">
+    <div class="gtco-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6 animate-box">
+
+                    <% if (typeof success === 'string') { %>
+                    <div class="alert alert-success" role="alert">
+                        <%=success%>
+                    </div>
+                    <% } %>
+                    <% if (typeof error === 'string') { %>
+                    <div class="alert alert-danger" role="alert"> <strong>Ops!</strong> <%=error%>
+                    </div>
+                    <% } %>
+
+                    <h3>Reserva de mesa</h3>
+                    <form action="/reservation" method="POST">
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="inputName">Nome</label>
+                                <input type="text" id="inputName" name="name" class="form-control" value="<%=body.name%>">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="inputEmail">E-mail</label>
+                                <input type="email" id="inputEmail" name="email" class="form-control" value="<%=body.email%>">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="inputPeople">Pessoas</label>
+                                <select id="inputPeople" name="people" class="form-control">
+                                    <option value=""> -- selecione -- </option>
+                                    <option <% if (body.people == 1) { %>selected<% } %> value="1">1</option>
+                                    <option <% if (body.people == 2) { %>selected<% } %> value="2">2</option>
+                                    <option <% if (body.people == 3) { %>selected<% } %> value="3">3</option>
+                                    <option <% if (body.people == 4) { %>selected<% } %> value="4">4</option>
+                                    <option <% if (body.people == 5) { %>selected<% } %> value="5+">5+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="inputDate">Data</label>
+                                <input type="text" id="inputDate" name="date" class="form-control" value="
+                                <%=body.date%>">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="inputTime">Hora</label>
+                                <input type="text" id="inputTime" name="time" class="form-control" value="
+                                <%=body.time%>">
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-primary btn-block" value="Reservar Agora">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-5 col-md-push-1 animate-box">
+                    <div class="gtco-contact-info">
+                        <h3>Informações de Contato</h3>
+                        <ul>
+                            <li class="address">Rua Ademar Saraiva Leão, 234<br> Alvarenga, São Bernardo do Campo - SP</li>
+                            <li class="phone"><a href="tel://1234567890">+1 234 567 890</a></li>
+                            <li class="email"><a href="mailto:contato@hcode.com.br">contato@hcode.com.br</a></li>
+                            <li class="url"><a href="https://www.hcode.com.br">Hcode.com.br</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('page-footer') -%>

@@ -1,0 +1,116 @@
+<%- include('inc/header') -%>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Tela Inicial
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+      <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-aqua">
+              <i class="ion ion-ios-calendar"></i>
+            </span>
+      
+            <div class="info-box-content">
+              <span class="info-box-text">Reservas</span>
+              <span class="info-box-number" id="reservations-total"><%= data.nrreservations %></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-red">
+              <i class="ion ion-ios-chatboxes"></i>
+            </span>
+      
+            <div class="info-box-content">
+              <span class="info-box-text">Contatos</span>
+              <span class="info-box-number" id="contacts-total"><%= data.nrcontacts %></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+      
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+      
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-green">
+              <i class="fa fa-cutlery"></i>
+            </span>
+      
+            <div class="info-box-content">
+              <span class="info-box-text">Menu</span>
+              <span class="info-box-number" id="menus-total"><%= data.nrmenus %></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow">
+              <i class="ion ion-ios-people-outline"></i>
+            </span>
+      
+            <div class="info-box-content">
+              <span class="info-box-text">Usuários</span>
+              <span class="info-box-number" id="users-total"><%= data.nrusers %></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+      </div>
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+<%- include('inc/footer') -%>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  function updateStats(){
+
+    fetch('/admin/stats')
+      .then(response => response.json())
+      .then(json => {
+
+        document.querySelector('#reservations-total').innerHTML = json.nrreservations;
+        document.querySelector('#contacts-total').innerHTML = json.nrcontacts;
+        document.querySelector('#menus-total').innerHTML = json.nrmenus;
+        document.querySelector('#users-total').innerHTML = json.nrusers;
+
+      });
+
+  }
+
+  var socket = io();
+
+  socket.on('reservations update', function (data) {
+      
+      updateStats();
+
+  });
+</script>

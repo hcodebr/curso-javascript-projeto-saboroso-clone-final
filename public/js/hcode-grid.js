@@ -80,7 +80,7 @@ class HcodeGrid {
 
     getTrData(event) {
 
-        let tr = event.path.find(el => {
+        let tr = event.e.composedPath(el => {
             return (el.tagName.toUpperCase() === 'TR');
         });
 

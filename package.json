@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "set DEBUG=saboroso:* & node app.js",
+    "dev": "set DEBUG=saboroso:* & nodemon app.js"
   },
   "engines": {
     "node": "9.11.2",

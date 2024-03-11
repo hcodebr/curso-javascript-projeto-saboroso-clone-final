@@ -20,7 +20,7 @@ docker compose up -d;
 
 # instalando as dependencias e rodando o projeto
 npm install --force;
-set DEBUG=saboroso:* & npm run dev;
+npm run dev;
 ```
 
 > Navegue para [http:127.0.0.1:3000](http:127.0.0.1:3000)

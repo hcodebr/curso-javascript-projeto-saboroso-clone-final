@@ -80,12 +80,18 @@ class HcodeGrid {
 
     getTrData(event) {
 
-        let tr = event.path.find(el => {
-            return (el.tagName.toUpperCase() === 'TR');
-        });
+        let targetElement = event.target;
 
-        return JSON.parse(tr.dataset.row);
+        while (targetElement && targetElement.tagName.toUpperCase() !== 'TR') {
+            targetElement = targetElement.parentElement;
+        }
 
+        if (targetElement) {
+            return JSON.parse(targetElement.dataset.row);
+        } else {
+            console.error('Element TR não encontrado');
+            return null;
+        }
     }
 
     initForms() {

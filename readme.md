@@ -33,8 +33,10 @@ docker compose up -d;
 - `public/db/menu_inserts.sb.sql`
 
 ### Instalando as dependencias e rodando o projeto
+```sh
 npm install --force;
-npm run dev;
+npm run dev; # Para desenvolvimento
+npm start;
 ```
 
 > Navegue para [http:127.0.0.1:3000](http:127.0.0.1:3000)
